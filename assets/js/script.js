@@ -4,6 +4,7 @@ $(function () {
   let saveBtn = $(".saveBtn");
   saveBtn.on("click", function () {
     let thisHour = $(this).parent("div").attr("id");
+    console.log(thisHour);
     let thisHourText = $(this).siblings("textarea").val();
     localStorage.setItem(thisHour, thisHourText);
     //to return current text context --> console.log(localStorage.getItem(thisHour));
@@ -13,30 +14,36 @@ $(function () {
   // apply past / present / future depending on current time
   let allTimes = $(".container-lg").children();
   // map array of all time-block ids
-  let timeBlockList = $(".time-block").map(function() {
+  let timeBlockList = $(".time-block").map(function () {
     return $(this).attr("id");
   });
   // current hour
   let currentHour = dayjs().hour();
   // reformat to look like time-block ids
   let hourLabel = "hour-" + currentHour;
+  // number value of where hourLabel falls in time-block id array
+  let timeBlock = $.inArray(hourLabel, timeBlockList);
+  // calls on time-block of that number
+  let currentTimeBlock = allTimes.eq(timeBlock);
+
+  // set colors
   if (currentHour < 9) {
-    allTimes.addClass("future")
+    allTimes.addClass("future");
   } else if (currentHour >= 9 && currentHour <= 17) {
-    // number value of where hourLabel is time-block id array
-    let timeBlock = $.inArray(hourLabel, timeBlockList)
-    // calls on time-block of that number
-    let currentTimeBlock = allTimes.eq(timeBlock)
     // asign past / present / future based on that
     currentTimeBlock.prevAll().addClass("past");
     currentTimeBlock.addClass("present");
     currentTimeBlock.nextAll().addClass("future");
   } else {
-    allTimes.addClass("past")
-  };
+    allTimes.addClass("past");
+  }
+
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
+  $(window).on("load", function () {
+    let savedText = localStorage.getItem(thisHour);
+  });
 
   // current date in header
   let today = setInterval(function () {
