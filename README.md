@@ -10,10 +10,10 @@ N/A
 
 ## Usage
 
-Deployment:
+Deployment: https://elthell.github.io/work-day-scheduler/
 
 Preview:
-![A user clicks on slots on the color-coded calendar and edits the events.](./Assets/05-third-party-apis-homework-demo.gif)
+![A user clicks on slots on the color-coded calendar and edits the events.](./assets/images/05-third-party-apis-homework-demo.gif)
 
 ## Credits
 
