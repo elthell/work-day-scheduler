@@ -3,12 +3,12 @@ $(function () {
   // save button to save to local storage
   let saveBtn = $(".saveBtn");
   saveBtn.on("click", function () {
+    // 'this' is the same button, get the parent id referring to hour
     let thisHour = $(this).parent("div").attr("id");
-    console.log(thisHour);
+    // get sibling text area value
     let thisHourText = $(this).siblings("textarea").val();
+    // localstorage key is hour id that can be called on later
     localStorage.setItem(thisHour, thisHourText);
-    //to return current text context --> console.log(localStorage.getItem(thisHour));
-    //to return text content of specific id --> console.log(localStorage.getItem("hour-10"))
   });
 
   // apply past / present / future depending on current time
@@ -30,7 +30,7 @@ $(function () {
   if (currentHour < 9) {
     allTimes.addClass("future");
   } else if (currentHour >= 9 && currentHour <= 17) {
-    // asign past / present / future based on that
+    // asign past / present / future based on time-block of current number
     currentTimeBlock.prevAll().addClass("past");
     currentTimeBlock.addClass("present");
     currentTimeBlock.nextAll().addClass("future");
@@ -38,12 +38,13 @@ $(function () {
     allTimes.addClass("past");
   }
 
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  $(window).on("load", function () {
-    let savedText = localStorage.getItem(thisHour);
-  });
+  // for loop using above timeBlockList var to get the ids off all time-blocks
+  // and get the text saved to each one to display there
+  for (var i = 0; i < timeBlockList.length; i++) {
+    let userBlock = timeBlockList[i];
+    let savedText = localStorage.getItem(userBlock);
+    $("#" + userBlock + " > textarea").val(savedText);
+  }
 
   // current date in header
   let today = setInterval(function () {

@@ -17,7 +17,9 @@ Preview:
 
 ## Credits
 
-Get the ids of multiple elements and check another value against them: https://stackoverflow.com/questions/15183876/jquery-attr-working-for-first-element-only; https://api.jquery.com/jquery.inarray/;
+Get the ids of multiple elements: https://stackoverflow.com/questions/15183876/jquery-attr-working-for-first-element-only; 
+
+Check outside value against array of values: https://api.jquery.com/jquery.inarray/;
 
 ## License
 
